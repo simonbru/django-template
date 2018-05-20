@@ -48,6 +48,8 @@ def patch_playbook(path):
     for line in lines:
         if 'role: django' in line or 'role: postgresql' in line:
             line = line.replace('# -', '-')
+        if '{{ cookiecutter.use_webpack }}' == 'y' and 'role: webpack' in line:
+            line = line.replace('# -', '-')
 
         patched_lines.append(line)
 

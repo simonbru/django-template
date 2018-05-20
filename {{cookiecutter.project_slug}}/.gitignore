@@ -7,6 +7,11 @@ __pycache__
 !/envdir/.gitkeep
 /.tox
 
+{%- if cookiecutter.use_webpack == 'y' %}
+
+/node_modules
+{%- endif %}
+
 {%- if cookiecutter.use_drifter == 'y' %} 
  
 vagrant_ansible_inventory_default 
