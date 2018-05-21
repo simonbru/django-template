@@ -63,7 +63,9 @@ if __name__ == '__main__':
         patch_parameters('virtualization/parameters.yml')
         patch_playbook('virtualization/playbook.yml')
 
-    if '{{ cookiecutter.use_webpack }}' != 'y':
+    if '{{ cookiecutter.use_webpack }}' == 'y':
+        shutil.copyfile('{{ cookiecutter.project_slug }}/templates/base_webpack.html', '{{ cookiecutter.project_slug }}/templates/base.html')
+    else:
         shutil.rmtree('{{ cookiecutter.project_slug }}/dist')
         shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scripts')
         shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scss')
@@ -74,3 +76,4 @@ if __name__ == '__main__':
     if '{{ cookiecutter.override_user_model }}' == 'n':
         shutil.rmtree('{{ cookiecutter.project_slug }}/accounts')
     os.remove('{{ cookiecutter.project_slug }}/templates/base_cms.html')
+    os.remove('{{ cookiecutter.project_slug }}/templates/base_webpack.html')

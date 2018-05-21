@@ -1,0 +1,15 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    {% block body %}
+    It works!
+    {% endblock %}
+    <script type="text/javascript" src="{% static 'common.js' %}"></script>
+  </body>
+</html>
