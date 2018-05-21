@@ -37,6 +37,7 @@ def patch_parameters(path):
     set_parameter(path, 'hostname', "{{ cookiecutter.project_slug }}.lo")
     set_parameter(path, 'python_version', '3')
     set_parameter(path, 'pip_tools_version', '1.11.0')
+    set_parameter(path, 'webpack_create_config', 'false')
 
 
 def patch_playbook(path):
