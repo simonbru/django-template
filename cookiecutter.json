@@ -1,5 +1,6 @@
 {
-	"project_slug": "my_project",
+  "project_name": "My Project",
+  "project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
   "use_drifter": "y",
   "use_webpack": "{{ cookiecutter.use_drifter }}",
   "override_user_model": "y",
