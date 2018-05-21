@@ -1,7 +1,7 @@
 {{ cookiecutter.project_name }}
 =======
 
-{% if cookiecutter.use_vagrant == 'y' %}
+{% if cookiecutter.use_drifter == 'y' %}
 Installation
 ------------
 
