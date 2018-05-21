@@ -67,10 +67,10 @@ if __name__ == '__main__':
     if '{{ cookiecutter.use_webpack }}' == 'y':
         shutil.copyfile('{{ cookiecutter.project_slug }}/templates/base_webpack.html', '{{ cookiecutter.project_slug }}/templates/base.html')
     else:
-        shutil.rmtree('{{ cookiecutter.project_slug }}/dist')
-        shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scripts')
-        shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scss')
-        os.remove('{{ cookiecutter.project_slug }}/webpack.config.js')
+        shutil.rmtree('dist')
+        shutil.rmtree('assets/scripts')
+        shutil.rmtree('assets/scss')
+        os.remove('webpack.config.js')
 
     if '{{ cookiecutter.use_djangocms }}' == 'y':
         shutil.copyfile('{{ cookiecutter.project_slug }}/templates/base_cms.html', '{{ cookiecutter.project_slug }}/templates/base.html')
