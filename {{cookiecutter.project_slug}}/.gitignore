@@ -10,6 +10,8 @@ __pycache__
 {%- if cookiecutter.use_webpack == 'y' %}
 
 /node_modules
+/dist/*
+!/dist/.gitkeep
 {%- endif %}
 
 {%- if cookiecutter.use_drifter == 'y' %} 

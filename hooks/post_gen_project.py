@@ -63,6 +63,11 @@ if __name__ == '__main__':
         patch_parameters('virtualization/parameters.yml')
         patch_playbook('virtualization/playbook.yml')
 
+    if '{{ cookiecutter.use_webpack }}' != 'y':
+        shutil.rmtree('{{ cookiecutter.project_slug }}/dist')
+        shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scripts')
+        shutil.rmtree('{{ cookiecutter.project_slug }}/assets/scss')
+
     if '{{ cookiecutter.use_djangocms }}' == 'y':
         shutil.copyfile('{{ cookiecutter.project_slug }}/templates/base_cms.html', '{{ cookiecutter.project_slug }}/templates/base.html')
 

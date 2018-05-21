@@ -118,6 +118,9 @@ STATIC_ROOT = get_env_variable('STATIC_ROOT', '/tmp/static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    {% if cookiecutter.use_webpack == 'y' -%}
+    os.path.join(BASE_DIR, 'dist'),
+    {% endif -%}
 )
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
