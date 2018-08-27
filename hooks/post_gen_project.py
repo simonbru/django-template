@@ -39,6 +39,7 @@ def patch_parameters(path):
     set_parameter(path, 'box_name', 'drifter/stretch64-base')
     set_parameter(path, 'box_url', 'https://vagrantbox-public.liip.ch/drifter-stretch64-base.json')
     set_parameter(path, 'webpack_create_config', 'false')
+    set_parameter(path, 'django_use_pipenv', 'true')
 
 
 def patch_playbook(path):
