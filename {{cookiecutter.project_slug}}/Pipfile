@@ -1,0 +1,41 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dj-database-url = "*"
+"psycopg2-binary" = "*"
+Django = "*"
+
+{%- if cookiecutter.use_djangocms == 'y' %}
+django-cms
+djangocms-text-ckeditor
+djangocms-link
+django-filer
+{%- endif %}
+
+
+[dev-packages]
+django-debug-toolbar = "*"
+django-extensions = "*"
+ipython = "*"
+pip-tools = "*"
+tox = "*"
+werkzeug = "*"
+
+# Deployment requirements
+Fabric3 = "*"
+gitric = "*"
+isort = "*"
+
+# Test requirements
+flake8 = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-django = "*"
+pytest-xdist = "*"
+
+
+[requires]
+python_version = "3.5"
