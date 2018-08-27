@@ -21,20 +21,14 @@ django-debug-toolbar = "*"
 django-extensions = "*"
 ipython = "*"
 pip-tools = "*"
-tox = "*"
+# tox = "*"  # tox-pipenv needs tox==3.0.0 for now
+tox-pipenv = "*"
 werkzeug = "*"
 
 # Deployment requirements
 Fabric3 = "*"
 gitric = "*"
 isort = "*"
-
-# Test requirements
-flake8 = "*"
-pytest = "*"
-pytest-cov = "*"
-pytest-django = "*"
-pytest-xdist = "*"
 
 
 [requires]
