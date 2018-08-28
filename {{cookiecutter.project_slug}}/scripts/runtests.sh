@@ -1,23 +1,5 @@
-#!/bin/sh
-set -e
-
-finish() {
-    vagrant halt
-}
-
-trap finish EXIT INT
-
-git submodule update --init
-
-
-
-#!/bin/bash
-
-# don't delete this line, or copy that content and adjust it
-. ./virtualization/drifter/ci/test-header.sh
-
-~/venv/bin/tox -r
-
-# don't delete this line, or copy that content and adjust it
-. ./virtualization/drifter/ci/test-footer.sh
-
+#!/bin/sh -e
+cd "$(dirname "$0")/.."  # project repo
+mkdir -p .tox
+pipenv lock -r --dev --keep-outdated > .tox/requirements-test.txt
+pipenv run tox "${@}"
