@@ -22,8 +22,6 @@ django-filer
 django-debug-toolbar = "*"
 django-extensions = "*"
 ipython = "*"
-pip-tools = "*"
-tox = "*"
 werkzeug = "*"
 
 # Deployment requirements
@@ -44,4 +42,4 @@ python_version = "3"
 
 
 [scripts]
-test = "scripts/runtests.sh"
+test = "scripts/run_tests.sh"
