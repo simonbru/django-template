@@ -15,7 +15,7 @@ from gitric import api as gitric
 # particular environment will be made available in the `env` variable.
 ENVIRONMENTS = {
     'prod': {
-        'root': '/var/www/{{ cookiecutter.project_slug }}/prod/',
+        'root': '/var/www/my_project/prod/',
         'hosts': ['root@myhost'],
         # You can set settings that will be automatically deployed when running
         # the `bootstrap` command
@@ -24,17 +24,20 @@ ENVIRONMENTS = {
         # }
     },
     'dev': {
-        'root': '/var/www/{{ cookiecutter.project_slug }}/staging/',
-        'hosts': ['root@myhost'],
+        'root': '/tmp/my_project/staging/',
+        'hosts': ['simon@localhost'],
         # You can set settings that will be automatically deployed when running
         # the `bootstrap` command
-        # 'settings': {
-        #     'ALLOWED_HOSTS': 'www.myhost.com',
-        # }
+        'settings': {
+            'ALLOWED_HOSTS': 'www.myhost.com',
+            'MEDIA_ROOT': '/tmp/my_project/staging/media',
+            'STATIC_ROOT': '/tmp/my_project/staging/static',
+            'STATIC_URL': '/static',
+        }
     }
 }
 
-env.project_name = '{{ cookiecutter.project_slug }}'
+env.project_name = 'my_project'
 
 
 def ls(path):
@@ -54,7 +57,8 @@ def git_push(commit):
     repository to the given commit. The commit can be any git object, be it a
     hash, a tag or a branch.
     """
-    gitric.git_seed(get_project_root(), commit)
+    gitric.allow_dirty()
+    gitric.git_seed(get_project_root(), commit, )
     gitric.git_reset(get_project_root(), 'master')
 
 
@@ -69,7 +73,7 @@ def get_virtualenv_root():
     """
     Return the path to the virtual environment on the remote server.
     """
-    return os.path.join(env.root, 'venv')
+    return os.path.join(get_project_root(), '.venv')
 
 
 def get_backups_root():
@@ -87,11 +91,11 @@ def run_in_virtualenv(cmd, args):
                           args))
 
 
-def run_pip(args):
-    """
-    Run the pip command in the remote virtualenv.
-    """
-    return run_in_virtualenv('pip', args)
+# def run_pip(args):
+#     """
+#     Run the pip command in the remote virtualenv.
+#     """
+#     return run_in_virtualenv('pip', args)
 
 
 def run_python(args):
@@ -106,7 +110,7 @@ def install_requirements():
     Install the requirements from the base.txt file to the remote virtualenv.
     """
     with cd(get_project_root()):
-        run_pip("install -r requirements/base.txt")
+        run("PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy")
 
 
 def migrate_database():
@@ -145,8 +149,10 @@ def create_structure():
     run('mkdir -p %s' % env.root)
 
     with cd(env.root):
-        run('mkdir -p static backups')
+        run('mkdir -p envdir static backups')
         run('python3 -m venv venv')
+    with cd(get_project_root()):
+        run('mkdir -p envdir')
 
 
 @task
@@ -213,7 +219,7 @@ def compile_assets():
     local('npm install')
     local('npm run build')
     local(
-        "rsync -e 'ssh -p {port}' -r --exclude *.map --exclude *.swp {{ cookiecutter.project_slug }}/static/ "
+        "rsync -e 'ssh -p {port}' -r --exclude *.map --exclude *.swp my_project/static/ "
         "{user}@{host}:{path}".format(host=env.host,
                                       user=env.user,
                                       port=env.port,
