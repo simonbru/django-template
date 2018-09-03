@@ -6,7 +6,7 @@ translations: ## Regenerate .po files with ./manage.py makemessages
 	pipenv run ./manage.py makemessages -a -i "deployment/*" -i "requirements/*" -i "virtualization/*" -i "node_modules/*"
 
 .PHONY: compile-translations
-translations: ## Compile .po files with ./manage.py compilemessages
+compile-translations: ## Compile .po files with ./manage.py compilemessages
 	pipenv run ./manage.py compilemessages
 
 .PHONY: help
