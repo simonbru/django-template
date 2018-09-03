@@ -11,8 +11,8 @@ following commands to get you project up and running:
 
     vagrant up
     vagrant ssh
-    ./manage.py createsuperuser
-    ./manage.py runserver
+    pipenv run ./manage.py createsuperuser
+    pipenv run ./manage.py runserver
 
 Go to http://my-project.lo/ and start hacking!
 
@@ -49,10 +49,10 @@ Once the settings are adjusted and the dependencies installed, you can use the
 the server and deploy your project. For example, the following command will
 bootstrap your dev environment:
 
-    fab dev bootstrap
+    pipenv run fab dev bootstrap
 
 You'll have to run the bootstrap command for each of the environments you want
 to bootstrap. After the site is bootstrapped, subsequent deployments can be
 done with the `deploy` command:
 
-    fab dev deploy
+    pipenv run fab dev deploy

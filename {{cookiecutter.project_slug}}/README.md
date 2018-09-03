@@ -14,7 +14,7 @@ Then SSH into the box by running `vagrant ssh` and run:
 ```
 npm install
 npm run build
-./manage.py runserver
+pipenv run ./manage.py runserver
 ```
 
 Then point your browser to http://{{ cookiecutter.project_slug|replace('_', '-') }}.lo/.
