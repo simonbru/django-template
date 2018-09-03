@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export CI_TEST_SCRIPT=pipenv run test
+export CI_TEST_SCRIPT=scripts/pipenv_run_tests.sh
 
 # if you don't want to use a global cache dir which is used
 # across all projects (even not your own), disable .this
